@@ -25,18 +25,18 @@
       state: disabled
 
   # No local firewall. You've been warned. If you need it, turn it back on afterwards, and ensure it still goes well.
-  - name: Stop local firewall
-    service:
-      # port: "{{ item }}"
-      # permanent: yes
-      name: firewalld
-      state: stopped
+  # - name: Stop local firewall
+  #   service:
+  #     # port: "{{ item }}"
+  #     # permanent: yes
+  #     name: firewalld
+  #     state: stopped
 
 #  Fix CentOS AppStream repo
-  - name: Fix CentOS 8 AppStream repo in new releases
-    shell: |
-      sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-      sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+  # - name: Fix CentOS 8 AppStream repo in new releases
+  #   shell: |
+  #     sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+  #     sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 
   - name: Create directories
     file: 
@@ -70,19 +70,19 @@
     notify:
       - Restart DNS
   # I added this only for troubleshooting ... will remove
-  # - name: Add aliases
-  #   lineinfile: 
-  #     path: /home/ansiblebot/.bashrc
-  #     insertafter: EOF
-  #     line: "{{ item }}"
-  #   loop:
-  #     - alias ssb="ssh -i .ssh/ssh_okd core@192.168.2.189"
-  #     - alias ssm0="ssh -i ~/.ssh/ssh_okd core@192.168.2.190"
-  #     - alias ssm1="ssh -i ~/.ssh/ssh_okd core@192.168.2.191"
-  #     - alias ssm2="ssh -i ~/.ssh/ssh_okd core@192.168.2.192"
-  #     - alias ssw0="ssh -i ~/.ssh/ssh_okd core@192.168.2.193"
-  #     - alias ssw1="ssh -i ~/.ssh/ssh_okd core@192.168.2.194"
-  #     - alias ssw2="ssh -i ~/.ssh/ssh_okd core@192.168.2.195"   
+  - name: Add aliases
+    lineinfile: 
+      path: /home/ansiblebot/.bashrc
+      insertafter: EOF
+      line: "{{ item }}"
+    loop:
+      - alias ssb="ssh -i .ssh/ssh_okd core@192.168.4.189"
+      - alias ssm0="ssh -i ~/.ssh/ssh_okd core@192.168.4.190"
+      - alias ssm1="ssh -i ~/.ssh/ssh_okd core@192.168.4.191"
+      - alias ssm2="ssh -i ~/.ssh/ssh_okd core@192.168.4.192"
+      - alias ssw0="ssh -i ~/.ssh/ssh_okd core@192.168.4.193"
+      - alias ssw1="ssh -i ~/.ssh/ssh_okd core@192.168.4.194"
+      - alias ssw2="ssh -i ~/.ssh/ssh_okd core@192.168.4.195"   
         
   # Setting up DNS, HTTPD, HA Proxy, TFTPD
   - name: install bind, httpd, haproxy, tftp, dhcpd

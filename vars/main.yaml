@@ -1,15 +1,15 @@
 ---
-main_dns: 192.168.1.4
+main_dns: 192.168.4.1
 
 network:
-  home: 192.168.1.0/24
-  home_dns: 192.168.1.4
-  lab_subnet: 192.168.2.0
-  lab_cidr: 192.168.2.0/24
-  lab_dhcp_start: 192.168.2.100
-  lab_dhcp_stop: 192.168.2.150
-  lab_broadcast: 192.168.2.255
-  lab_router: 192.168.2.1
+  home: 192.168.4.0/24
+  home_dns: 192.168.4.1
+  lab_subnet: 192.168.4.0
+  lab_cidr: 192.168.4.0/24
+  lab_dhcp_start: 192.168.4.100
+  lab_dhcp_stop: 192.168.4.150
+  lab_broadcast: 192.168.4.255
+  lab_router: 192.168.4.1
 dns:
   domain: homelab.local
 #  subdomain1: okd.homelab.local
@@ -41,6 +41,7 @@ okd:
 # [4.12.0 02-18]
   client: https://github.com/okd-project/okd/releases/download/4.12.0-0.okd-2023-02-18-033438/openshift-client-linux-4.12.0-0.okd-2023-02-18-033438.tar.gz
   install: https://github.com/okd-project/okd/releases/download/4.12.0-0.okd-2023-02-18-033438/openshift-install-linux-4.12.0-0.okd-2023-02-18-033438.tar.gz
+  #install: https://github.com/okd-project/okd/releases/download/4.12.0-0.okd-2023-04-01-051724/openshift-install-linux-4.12.0-0.okd-2023-04-01-051724.tar.gz
   kernel: https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221127.3.0/x86_64/fedora-coreos-37.20221127.3.0-live-kernel-x86_64
   rootfs: https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221127.3.0/x86_64/fedora-coreos-37.20221127.3.0-live-rootfs.x86_64.img
   initramfs: https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/37.20221127.3.0/x86_64/fedora-coreos-37.20221127.3.0-live-initramfs.x86_64.img
@@ -51,29 +52,29 @@ user:
   home: /home/ansiblebot
 valet:
   name: lab-valet
-  ip: 192.168.2.196
+  ip: 192.168.4.196
   macaddr: 7A:00:00:00:03:08
 bootstrap_node:
   name: bootstrap
-  ip: 192.168.2.189
+  ip: 192.168.4.189
   macaddr: 7A:00:00:00:03:07
 master_nodes:
   - name: master0
-    ip: 192.168.2.190
+    ip: 192.168.4.190
     macaddr: 7A:00:00:00:03:01
   - name: master1
-    ip: 192.168.2.191
+    ip: 192.168.4.191
     macaddr: 7A:00:00:00:03:02
   - name: master2
-    ip: 192.168.2.192
+    ip: 192.168.4.192
     macaddr: 7A:00:00:00:03:03
 worker_nodes:
   - name: worker0
-    ip: 192.168.2.193
+    ip: 192.168.4.193
     macaddr: 7A:00:00:00:03:04
   - name: worker1
-    ip: 192.168.2.194
+    ip: 192.168.4.194
     macaddr: 7A:00:00:00:03:05
   - name: worker2
-    ip: 192.168.2.195
+    ip: 192.168.4.195
     macaddr: 7A:00:00:00:03:06

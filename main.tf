@@ -19,17 +19,17 @@ provider "proxmox" {
 
 locals {
   vm_settings = {
-    "master0"      = { macaddr = "7A:00:00:00:03:01", cores = 4, ram = 16384, vmid = 801, os = "pxe-client", boot = false },
-    "master1"      = { macaddr = "7A:00:00:00:03:02", cores = 4, ram = 16384, vmid = 802, os = "pxe-client", boot = false },
-    "master2"      = { macaddr = "7A:00:00:00:03:03", cores = 4, ram = 16384, vmid = 803, os = "pxe-client", boot = false },
-    "worker0"      = { macaddr = "7A:00:00:00:03:04", cores = 2, ram = 16384, vmid = 804, os = "pxe-client", boot = false },
-    "worker1"      = { macaddr = "7A:00:00:00:03:05", cores = 2, ram = 16384, vmid = 805, os = "pxe-client", boot = false },
-    "worker2"      = { macaddr = "7A:00:00:00:03:06", cores = 2, ram = 16384, vmid = 806, os = "pxe-client", boot = false },
-    "bootstrap"    = { macaddr = "7A:00:00:00:03:07", cores = 4, ram = 16384, vmid = 807, os = "pxe-client", boot = false },
-    "okd-services" = { macaddr = "7A:00:00:00:03:08", cores = 4, ram = 16384, vmid = 808, os = "a2cent", boot = true }
+    "master0"      = { macaddr = "7A:00:00:00:03:01", cores = 4, ram = 8192, vmid = 801, os = "pxe-client", boot = false },
+    "master1"      = { macaddr = "7A:00:00:00:03:02", cores = 4, ram = 8192, vmid = 802, os = "pxe-client", boot = false },
+    "master2"      = { macaddr = "7A:00:00:00:03:03", cores = 4, ram = 8192, vmid = 803, os = "pxe-client", boot = false },
+    "worker0"      = { macaddr = "7A:00:00:00:03:04", cores = 2, ram = 2048, vmid = 804, os = "pxe-client", boot = false },
+    "worker1"      = { macaddr = "7A:00:00:00:03:05", cores = 2, ram = 2048, vmid = 805, os = "pxe-client", boot = false },
+    "worker2"      = { macaddr = "7A:00:00:00:03:06", cores = 2, ram = 2048, vmid = 806, os = "pxe-client", boot = false },
+    "bootstrap"    = { macaddr = "7A:00:00:00:03:07", cores = 4, ram = 2048, vmid = 807, os = "pxe-client", boot = false },
+  "okd-services" = { macaddr = "7A:00:00:00:03:08", cores = 4, ram = 2048, vmid = 808, os = "a2cent", boot = true }
   }
-  bridge = "vmbr1"
-  vlan   = 2
+  bridge = "vmbr0"
+  vlan   = 204
   lxc_settings = {
   }
 }
@@ -56,7 +56,7 @@ resource "proxmox_vm_qemu" "cloudinit-nodes" {
     slot    = 0
     size    = "100G"
     type    = "scsi"
-    storage = "VM-DATA"
+    storage = "local-lvm"
     #iothread = 1
   }
   network {
